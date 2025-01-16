@@ -1,6 +1,6 @@
 export default function Form() {
     return (
-        <form noValidate className="needs-validation" id="contactForm" name="contactForm" method="POST" onSubmit={handleSubmit}
+        <form noValidate className="needs-validation" id="contactForm" name="contactForm" method="POST"
             netlify-honeypot="bot-field" data-netlify="true">
             <input type="hidden" name="form-name" value="contactForm" />
             <div className="form-group">
