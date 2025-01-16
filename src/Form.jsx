@@ -4,15 +4,20 @@ import React, { useState } from 'react'
 export default function Form() {
   const [contactSelect, setContactSelect] = useState('')
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    e.target.submit();
+  };
+
   return (
     <form
       name="contactUsForm"
       id="contactUsForm"
       method="POST"
       data-netlify="true"
-      data-netlify-recaptcha="true"
       className='contact-form needs-validation'
       netlify-honeypot="bot-field" 
+      onSubmit={handleSubmit}
     >
       <input type="hidden" name="form-name" value="contactUsForm" />
       <TextField
@@ -72,7 +77,6 @@ export default function Form() {
           <input name="bot-field"/>
         </label>
       </p>
-      <div data-netlify-recaptcha="true"></div>
 
       <Button
         className='mt-4'
