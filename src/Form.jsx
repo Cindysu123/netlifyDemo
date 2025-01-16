@@ -1,4 +1,3 @@
-// src/Form.jsx
 import React, { useState } from "react";
 import { TextField, Button, Container, Grid, Typography } from "@mui/material";
 
@@ -16,22 +15,38 @@ const Form = () => {
     }));
   };
 
+  const handleSubmit = (e) => {
+    // Prevent default form submission behavior if you want to handle with JS
+    e.preventDefault();
+
+    const form = e.target;
+    const formData = new FormData(form);
+
+    // Optional: Using fetch API for AJAX-based submission
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData).toString(),
+    })
+      .then(() => console.log("Form successfully submitted"))
+      .catch((error) => alert(error));
+  };
+
   return (
     <Container maxWidth="sm">
       <Typography variant="h4" gutterBottom>
         Contact Form
       </Typography>
-      {/* Add 'netlify' and 'name' attributes */}
+      {/* Form with data-netlify="true" */}
       <form
         name="contact-form"
         method="POST"
-        data-netlify="true" // This tells Netlify to handle the form submission
-        netlify-honeypot="bot-field" // Optional: Anti-spam field (Netlify can ignore this field during form submission)
-        onSubmit={(e) => e.preventDefault()} // Prevent default submission to control the form behavior
+        data-netlify="true" // Tells Netlify to handle the form submission
+        onSubmit={handleSubmit} // Use this if you're handling the form with JS
       >
+        {/* Hidden input to tell Netlify which form to handle */}
+        <input type="hidden" name="form-name" value="contact-form" />
         <Grid container spacing={2}>
-          {/* This is a hidden field for anti-spam (bot protection) */}
-          <input type="hidden" name="form-name" value="contact-form" />
           <Grid item xs={12}>
             <TextField
               fullWidth
