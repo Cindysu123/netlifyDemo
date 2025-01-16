@@ -16,19 +16,22 @@ const Form = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
-    // Here, you could integrate an API or a service to handle the form submission.
-  };
-
   return (
     <Container maxWidth="sm">
       <Typography variant="h4" gutterBottom>
         Contact Form
       </Typography>
-      <form onSubmit={handleSubmit}>
+      {/* Add 'netlify' and 'name' attributes */}
+      <form
+        name="contact-form"
+        method="POST"
+        data-netlify="true" // This tells Netlify to handle the form submission
+        netlify-honeypot="bot-field" // Optional: Anti-spam field (Netlify can ignore this field during form submission)
+        onSubmit={(e) => e.preventDefault()} // Prevent default submission to control the form behavior
+      >
         <Grid container spacing={2}>
+          {/* This is a hidden field for anti-spam (bot protection) */}
+          <input type="hidden" name="form-name" value="contact-form" />
           <Grid item xs={12}>
             <TextField
               fullWidth
