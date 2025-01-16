@@ -1,72 +1,89 @@
+import { Button, FormControl, InputLabel, MenuItem, Select, TextareaAutosize, TextField } from '@mui/material'
+import React, { useState } from 'react'
+
 export default function Form() {
-    return (
-        <form noValidate className="needs-validation" id="contactForm" name="contactForm" method="POST"
-            netlify-honeypot="bot-field" data-netlify="true">
-            <input type="hidden" name="form-name" value="contactForm" />
-            <div className="form-group">
-                <label className="display-block">
-                    <h6 className="contact-label">Full Name <span className="text-danger">*</span></h6>
-                    <input className="form-control" type="text" name="name" required />
-                    <div className="invalid-feedback">
-                        Please enter your full name.
-                    </div>
-                </label>
-            </div>
-            <div className="form-group">
-                <label className="display-block">
-                    <h6 className="contact-label">Email <span className="text-danger">*</span></h6>
-                    <input className="form-control" type="email" aria-describedby="emailHelp" name="email" required />
-                    <div className="invalid-feedback">
-                        Please enter a valid email.
-                    </div>
-                </label>
-            </div>
-            <div className="form-group">
-                <label className="display-block">
-                    <h6 className="contact-label">Phone <span className="text-danger">*</span></h6>
-                    <input className="form-control" type="tel" aria-describedby="phonelHelp" name="phone" required />
-                    <div className="invalid-feedback">
-                        Please enter a valid phone number.
-                    </div>
-                </label>
-            </div>
-            <div className="form-group">
-                <label className="display-block">
-                    <h6 className="contact-label">Company Name</h6>
-                    <input className="form-control" type="company" aria-describedby="companyHelp" name="company"/>
-                    <div className="invalid-feedback">
-                        Please enter a company name.
-                    </div>
-                </label>
-            </div>
-            <div className="form-group">
-                <label className="display-block">
-                    <h6 className="contact-label">How can we help you? <span className="text-danger">*</span></h6>
-                    <select defaultValue="" className="custom-select" name="request" required>
-                        <option disabled value="">-- Select an option --</option>
-                        <option value="I want more information">I want more information</option>
-                        <option value="I want to request a quote">I want to request a quote</option>
-                        <option value="I want to become a RippleGo Beta Tester">I want to become a RippleGo Beta Tester</option>
-                        <option value="I want to request a RippleGo demo">I want to request a RippleGo demo</option>
-                        <option value="Other">Other</option>
-                    </select>
-                    <div className="invalid-feedback">
-                        Please select an option.
-                    </div>
-                </label>
-            </div>
-            <div className="form-group">
-                <label className="display-block">
-                    <h6 className="contact-label">Your Message <span className="text-danger">*</span></h6>
-                    <textarea name="message" className="form-control" rows="5" required></textarea>
-                    <div className="invalid-feedback">
-                        Please enter a message.
-                    </div>
-                </label>
-            </div>
-            <button type='submit'>Submit</button>
-        </form>
-    )
+    const [contactSelect, setContactSelect] = useState('')
+
+  return (
+    <form
+      name="contactUsForm"
+      id="contactUsForm"
+      method="POST"
+      data-netlify="true"
+      className='contact-form needs-validation'
+      netlify-honeypot="bot-field" 
+    >
+      <input type="hidden" name="form-name" value="contactUsForm" />
+      <TextField
+        name="name"
+        className='contact-textfield'
+        label="Full Name"
+        type='text'
+        variant='outlined'
+        fullWidth
+        required
+      /> 
+      <TextField
+        name="email"
+        className='contact-textfield'
+        label="Email"
+        type='text'
+        variant='outlined'
+        fullWidth
+        required
+      /> 
+      <TextField
+        name="company"
+        className='contact-textfield'
+        label="Compay Name"
+        type='text'
+        variant='outlined'
+        fullWidth
+        required
+      /> 
+      <FormControl fullWidth className='contact-textfield' required>
+        <InputLabel id="contact-select">How can we help you?</InputLabel>
+        <Select
+          labelId='contact-select'
+          value={contactSelect}
+          label="How can we help you?"
+          name="request"
+          onChange={e => setContactSelect(e.target.value)}
+        >
+          <MenuItem value={'information'}>I want more information</MenuItem>
+          <MenuItem value={'quote'}>I want to request a quote</MenuItem>
+          <MenuItem value={'ripplego-tester'}>I want to become a RippleGo Beta Tester</MenuItem>
+          <MenuItem value={'ripplego-demo'}>I want to request a RippleGo demo</MenuItem>
+          <MenuItem value={'other'}>Other</MenuItem>
+        </Select>
+      </FormControl>
+      <TextareaAutosize
+        name="message"
+        className='contact-textfield mui-textarea'
+        label="Your Message"
+        type='text'
+        placeholder='How can we help you?'
+        minRows={5}
+        required
+      /> 
+      <p hidden>
+        <label>
+          <b>Dummy <span className="text-danger">*</span></b>
+          <input name="bot-field"/>
+        </label>
+      </p>
+
+      <Button
+        className='mt-4'
+        type='submit'
+        variant='contained'
+        color='warning'
+        fullWidth
+      >
+        Submit
+      </Button>
+    </form>
+  )
 }
 
 // export default function Form() {
