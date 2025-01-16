@@ -8,36 +8,13 @@
   </head>
   <body>
     <div id="root">
-      <form 
-      id="contactUsForm"
-      name="contactUsForm" 
-      data-netlify="true"
-      netlify-honeypot="bot-field" 
-      data-netlify-recaptcha="true"
-      method="POST"
-      action="/thanks/"
-      hidden
-    >
-      <input type="hidden" name="form-name" value="contactUsForm" />
-      <input type="text" name="name" />
-      <input type="email" name="email" />
-      <input type="text" name="company" />
-      <select name="request">
-          <option disabled value="">-- Select an option --</option>
-          <option value="I want more information">I want more information</option>
-          <option value="I want to request a quote">I want to request a quote</option>
-          <option value="I want to become a RippleGo Beta Tester">I want to become a RippleGo Beta Tester</option>
-          <option value="I want to request a RippleGo demo">I want to request a RippleGo demo</option>
-          <option value="Other">Other</option>
-      </select>
-      <textarea name="message"></textarea>
-      <p hidden>
-        <label>
-          <b>Dummy <span className="text-danger">*</span></b>
-          <input name="bot-field"/>
-        </label>
-      </p>
-    </form>
+      <form netlify hidden name="contactUsForm">
+        <input type='text' name='name' />
+        <input type='email' name='email'/>
+        <input type='text' name='company'/>
+        <input type='text' name='request'>
+        <input type='text' name="message"></input>
+      </form>
     </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
