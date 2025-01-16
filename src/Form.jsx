@@ -1,84 +1,46 @@
-import React, { useState } from "react";
-import { TextField, Button, Container, Grid, Typography } from "@mui/material";
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
-const Form = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-  });
+export default function ContactForm() {
+    const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+    const handleSubmit = event => {
+        event.preventDefault();
+      
+        const myForm = event.target;
+        const formData = new FormData(myForm);
+      
+        fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(formData).toString()
+        })
+          .then(() => navigate("/thank-you"))
+          .catch(error => alert(error));
+    };     
 
-  const handleSubmit = (e) => {
-    // Prevent default form submission behavior if you want to handle with JS
-    e.preventDefault();
+    return (
+        <form name="contact" method="POST" data-netlify="true" onSubmit={handleSubmit}>
+            <input type="hidden" name="form-name" value="contact" />
+            <p>
+                <label>Your Name: <input type="text" name="name" /></label>
+            </p>
+            <p>
+                <label>Your Email: <input type="email" name="email" /></label>
+            </p>
+            <p>
+                <label>Your Role: <select name="role[]" multiple>
+                <option value="leader">Leader</option>
+                <option value="follower">Follower</option>
+                </select></label>
+            </p>
+            <p>
+                <label>Message: <textarea name="message"></textarea></label>
+            </p>
+            <p>
+                <button type="submit">Send</button>
+            </p>
+        </form>
+    )
 
-    const form = e.target;
-    const formData = new FormData(form);
-
-    // Optional: Using fetch API for AJAX-based submission
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formData).toString(),
-    })
-      .then(() => console.log("Form successfully submitted"))
-      .catch((error) => alert(error));
-  };
-
-  return (
-    <Container maxWidth="sm">
-      <Typography variant="h4" gutterBottom>
-        Contact Form
-      </Typography>
-      {/* Form with data-netlify="true" */}
-      <form
-        name="contact-form"
-        method="POST"
-        data-netlify="true" // Tells Netlify to handle the form submission
-        onSubmit={handleSubmit} // Use this if you're handling the form with JS
-      >
-        {/* Hidden input to tell Netlify which form to handle */}
-        <input type="hidden" name="form-name" value="contact-form" />
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              label="Name"
-              variant="outlined"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              label="Email"
-              variant="outlined"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              type="email"
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <Button fullWidth type="submit" variant="contained" color="primary">
-              Submit
-            </Button>
-          </Grid>
-        </Grid>
-      </form>
-    </Container>
-  );
-};
-
-export default Form;
+}
