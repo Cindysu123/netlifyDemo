@@ -5,7 +5,6 @@ export default function Form() {
   const [contactSelect, setContactSelect] = useState('')
 
   const handleSubmit = (e) => {
-    e.preventDefault();
     e.target.submit();
   };
 
