@@ -8,12 +8,13 @@
   </head>
   <body>
     <div id="root">
-      <form netlify hidden name="contactUsForm">
+      <form netlify hidden name="contactUsForm" data-netlify-recaptcha="true">
         <input type='text' name='name' />
         <input type='email' name='email'/>
         <input type='text' name='company'/>
-        <input type='text' name='request'>
-        <input type='text' name="message"></input>
+        <input type='text' name='request'/>
+        <input type='text' name="message"/>
+        <div data-netlify-recaptcha="true"></div>
       </form>
     </div>
     <script type="module" src="/src/main.jsx"></script>

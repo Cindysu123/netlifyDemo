@@ -2,7 +2,7 @@ import { Button, FormControl, InputLabel, MenuItem, Select, TextareaAutosize, Te
 import React, { useState } from 'react'
 
 export default function Form() {
-    const [contactSelect, setContactSelect] = useState('')
+  const [contactSelect, setContactSelect] = useState('')
 
   return (
     <form
@@ -10,6 +10,7 @@ export default function Form() {
       id="contactUsForm"
       method="POST"
       data-netlify="true"
+      data-netlify-recaptcha="true"
       className='contact-form needs-validation'
       netlify-honeypot="bot-field" 
     >
@@ -47,7 +48,6 @@ export default function Form() {
           labelId='contact-select'
           value={contactSelect}
           label="How can we help you?"
-          name="request"
           onChange={e => setContactSelect(e.target.value)}
         >
           <MenuItem value={'information'}>I want more information</MenuItem>
@@ -72,6 +72,7 @@ export default function Form() {
           <input name="bot-field"/>
         </label>
       </p>
+      <div data-netlify-recaptcha="true"></div>
 
       <Button
         className='mt-4'
