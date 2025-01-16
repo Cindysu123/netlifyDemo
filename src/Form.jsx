@@ -6,7 +6,7 @@ export default function Form() {
             <div className="form-group">
                 <label className="display-block">
                     <h6 className="contact-label">Full Name <span className="text-danger">*</span></h6>
-                    <input onChange={handleChange} className="form-control" type="text" name="name" required />
+                    <input className="form-control" type="text" name="name" required />
                     <div className="invalid-feedback">
                         Please enter your full name.
                     </div>
@@ -15,7 +15,7 @@ export default function Form() {
             <div className="form-group">
                 <label className="display-block">
                     <h6 className="contact-label">Email <span className="text-danger">*</span></h6>
-                    <input onChange={handleChange} className="form-control" type="email" aria-describedby="emailHelp" name="email" required />
+                    <input className="form-control" type="email" aria-describedby="emailHelp" name="email" required />
                     <div className="invalid-feedback">
                         Please enter a valid email.
                     </div>
@@ -24,7 +24,7 @@ export default function Form() {
             <div className="form-group">
                 <label className="display-block">
                     <h6 className="contact-label">Phone <span className="text-danger">*</span></h6>
-                    <input onChange={handleChange} className="form-control" type="tel" aria-describedby="phonelHelp" name="phone" required />
+                    <input className="form-control" type="tel" aria-describedby="phonelHelp" name="phone" required />
                     <div className="invalid-feedback">
                         Please enter a valid phone number.
                     </div>
@@ -32,8 +32,8 @@ export default function Form() {
             </div>
             <div className="form-group">
                 <label className="display-block">
-                    <h6 className="contact-label">Company Name {requiredCompany && <span className="text-danger">*</span>}</h6>
-                    <input onChange={handleChange} className="form-control" type="company" aria-describedby="companyHelp" name="company" required={requiredCompany} />
+                    <h6 className="contact-label">Company Name</h6>
+                    <input className="form-control" type="company" aria-describedby="companyHelp" name="company"/>
                     <div className="invalid-feedback">
                         Please enter a company name.
                     </div>
@@ -42,7 +42,7 @@ export default function Form() {
             <div className="form-group">
                 <label className="display-block">
                     <h6 className="contact-label">How can we help you? <span className="text-danger">*</span></h6>
-                    <select defaultValue="" onBlur={handleChange} className="custom-select" name="request" required>
+                    <select defaultValue="" className="custom-select" name="request" required>
                         <option disabled value="">-- Select an option --</option>
                         <option value="I want more information">I want more information</option>
                         <option value="I want to request a quote">I want to request a quote</option>
@@ -58,7 +58,7 @@ export default function Form() {
             <div className="form-group">
                 <label className="display-block">
                     <h6 className="contact-label">Your Message <span className="text-danger">*</span></h6>
-                    <textarea onChange={handleChange} name="message" className="form-control" rows="5" required></textarea>
+                    <textarea name="message" className="form-control" rows="5" required></textarea>
                     <div className="invalid-feedback">
                         Please enter a message.
                     </div>
